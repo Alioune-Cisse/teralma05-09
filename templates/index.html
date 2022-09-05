@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+	<title>Test-App</title>
+	<meta charset="utf-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+	</script>
+
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+		rel="stylesheet" type="text/css" />
+
+	<script src="{{url_for('static', filename='js/index.js')}}"/></script>
+</head>
+<body>
+	<h1 style="text-align:center">Phase Test Nouvel Algo</h1>
+	<div>
+
+	<form name="result"  action="{{ url_for('result') }}" method="POST">
+
+	<label for="types">Type de Cérémonies : </label>
+	<input class="form-control" list="type" name="types" id="types" required="required">
+	<datalist id="type">
+		<option value="Mariage">
+		<option value="Baptême">
+		<option value="Autres">
+	</datalist><br><br>
+
+	<label for="budget">Budget prévu : </label>
+	<input type="number" name="budget" id="budget"><br><br>
+
+	<label for="invites">Nombre d'invités : </label>
+	<input type="number" name="invites" id="invites"><br><br>
+
+
+		<div class="checkbox form-group" id="sc">
+				<!--label><input type="checkbox"> Moutons</label-->
+				  <b>Choisir les sous catégories :</b><br><br>
+				  {%if data is not none %}
+				  	{%for i in data%}
+				<span>
+				  		<input type="checkbox" id='{{i}}' class='chk-btn' name="choix" value="{{i}}" checked/>
+						<label for='{{i}}'>{{i}}</label>
+				</span>
+					{%endfor%}
+				  {%endif%}
+		</div>
+
+	<!--label for="tags">Lister les besoins pour votre cérémonie : </label>
+	<input type="text" id="tags" name="tags"> <input type="button" name="ajouter" onclick="ajouter_val();" value="Ajouter"-->
+		<br><br><input type="submit" name="submit"  value="Terminer" class="btn btn-info">
+
+	</form></div>
+	<script>
+$( function() {
+	var availableTags = [
+		{% for language in languages %}
+			"{{language}}",
+		{% endfor %}
+	];
+	$( "#tags" ).autocomplete({
+	source: availableTags
+	});
+} );
+
+</script>
+</body>
+</html>

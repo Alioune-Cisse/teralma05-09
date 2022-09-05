@@ -1,0 +1,41 @@
+,Catégories dépenses,Sous catégories dépenses,Palier Prix 1,Palier Prix 2,Palier Prix 3,Palier Prix 4
+0,Alimentation,Mouton ou vache,100000.0,150000.0,200000.0,350000.0
+1,Alimentation,Traiteur,150000.0,300000.0,500000.0,650000.0
+2,Alimentation,Boisson ,100000.0,150000.0,200000.0,350000.0
+3,Total Alimentation,,350000.0,600000.0,900000.0,1350000.0
+4,Habillement,couture Homme,50000.0,100000.0,150000.0,300000.0
+5,Habillement,Tissu Homme,60000.0,100000.0,150000.0,300000.0
+6,Habillement,Couture Femme,50000.0,100000.0,150000.0,300000.0
+7,Habillement,Tissu Femme,75000.0,125000.0,150000.0,300000.0
+8,Total Habillement,,235000.0,425000.0,600000.0,1200000.0
+9,Hestétique,Coiffure,25000.0,50000.0,75000.0,125000.0
+10,Hestétique,pedicure ,15000.0,20000.0,30000.0,80000.0
+11,Hestétique,Makeup,25000.0,50000.0,75000.0,125000.0
+12,Total Hestetiques,,65000.0,120000.0,180000.0,330000.0
+13,Média,Photo,20000.0,30000.0,50000.0,100000.0
+14,Média,Vidéo,35000.0,50000.0,100000.0,150000.0
+15,Média,Animation,0.0,50000.0,100000.0,150000.0
+16,Total Media,,55000.0,130000.0,250000.0,400000.0
+17,Plus,enterrement vie de jeune fille,100000.0,200000.0,300000.0,450000.0
+18,Plus,,,,,
+19,Total PLUS,,100000.0,200000.0,300000.0,450000.0
+20,meubles,LIT,0.0,200000.0,350000.0,500000.0
+21,meubles,Armoires,0.0,100000.0,150000.0,300000.0
+22,Total  meubles,,0.0,300000.0,500000.0,800000.0
+23,Décorations & Salles,Décoration,50000.0,100000.0,150000.0,300000.0
+24,Décorations & Salles,Salle,0.0,300000.0,500000.0,650000.0
+25,Total ,,50000.0,400000.0,650000.0,950000.0
+26,Accessoire,Parures,400000.0,800000.0,1500000.0,2000000.0
+27,Accessoire,chaussures,40000.0,60000.0,100000.0,250000.0
+28,Accessoire,SAC à main ,20000.0,30000.0,50000.0,200000.0
+29,Total Accessoires,,460000.0,890000.0,1650000.0,2450000.0
+30,Cultures,Terals,100000.0,500000.0,1000000.0,2000000.0
+31,Cultures,,,,,
+32,Cultures,,,,,
+33,Total teral,,,,,
+34,VOyage lune de miel ,,,,,
+35,VOyage lune de miel ,,800000.0,1000000.0,2000000.0,3000000.0
+36,VOyage lune de miel ,,,,,
+37,Total voyage,,800000.0,1000000.0,2000000.0,3000000.0
+38,Total voyage,,,,,
+39,Total dépenses cérémonies,,1955000.0,3765000.0,6580000.0,10030000.0

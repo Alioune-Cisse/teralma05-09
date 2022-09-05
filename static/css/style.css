@@ -1,0 +1,33 @@
+form{
+    color:black;
+    text-align : center;
+    margin : 5%
+}
+
+input.chk-btn {
+  display: none;
+}
+input.chk-btn + label {
+  border: 1px solid grey;
+  background: ghoswhite;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+input.chk-btn:not(:checked) + label:hover {
+  box-shadow: 0px 1px 3px;
+}
+input.chk-btn + label:active,
+input.chk-btn:checked + label {
+  box-shadow: 0px 0px 3px inset;
+  background: #0e0;
+}
+table, th, td {
+border: 1px solid black;
+margin-left: auto;
+margin-right: auto;
+border-collapse: collapse;
+width: 500px;
+text-align: center;
+font-size: 20px;
+}
