@@ -22,7 +22,7 @@ def get_palier(df:pd.DataFrame, valeur:float) -> str:
     
     paliers = df.iloc[-1:,2:].transpose().astype('float')
     
-    if(valeur > paliers.iloc[-2,0]):
+    if(valeur > paliers.iloc[-1,0]):
             prev_ = next_ = paliers.index[-1]
             #next_ = paliers.index[-1]
             
