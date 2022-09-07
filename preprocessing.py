@@ -131,8 +131,12 @@ def optimize_min(df:pd.DataFrame, budget: int, choice: list, invites: int) -> di
     
     repartitions = {}
     i = 0
-    while sum(repartitions.values())+vals[i][2]<budget:
-        repartitions[vals[i][1]] = vals[i][2]
+    while (sum(repartitions.values()) < budget) and (i < len(vals)):
+        if(sum(repartitions.values()) + vals[i][2]) <= budget:
+            repartitions[vals[i][1]] = vals[i][2]
+        else:
+            repartitions[vals[i][1]] = 0
+            
         i += 1
 
     
