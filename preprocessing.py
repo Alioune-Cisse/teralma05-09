@@ -61,7 +61,7 @@ def constraints(df: pd.DataFrame, budget: int, choice: list, invites: int) -> di
     return contraintes
 
 
-def pulp_optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> dict:
+def optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> dict:
  
     contraintes = constraints(df, budget, choice, invites)
     choix = choix_categ(df,choice)
@@ -71,6 +71,9 @@ def pulp_optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> d
     
     # Initialiser le problème
     probleme = LpProblem(name='Répartition budget', sense=LpMaximize)
+    # Ajouter la fonction objectif à maximiser au problème
+    fonction_objectif = LpAffineExpression(e=lpSum(variables))
+    probleme.setObjective(fonction_objectif)
 
     # Ajouter contraintes budgéétaire
     contrainte_budget = LpConstraint(e=sum(variables), sense=LpConstraintEQ, name='contrainte_budgétaire', rhs=budget)
@@ -87,9 +90,6 @@ def pulp_optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> d
         contrainte_ = LpConstraint(e=elt, sense=LpConstraintLE, name='less contrainte ' + choix[elt.name], rhs=valeur_max)
         probleme.add(contrainte_)
 
-    # Ajouter la fonction objectif à maximiser au problème
-    fonction_objectif = LpAffineExpression(e=lpSum(variables))
-    probleme.setObjective(fonction_objectif)
 
     # Initialiser le solveur
     solver = PULP_CBC_CMD(timeLimit=20, msg=True)
@@ -101,3 +101,45 @@ def pulp_optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> d
         repartitions[choix[val.name]] = round(val.value())
     repartitions["Autres"] = budget - sum(repartitions.values())
     return repartitions
+
+def optimize_min(df:pd.DataFrame, budget: int, choice: list, invites: int) -> dict:
+    contraintes = constraints(df, budget, choice, invites)
+    choix = choix_categ(df,choice)
+    
+    valeurs = ["alimentation", "ésthétique", "habillement", "média", "salle et déco",
+               "accessoire", "plus", "cultures", "voyage lune de miel"]
+    
+    # Initialiser les variables
+    ctes = [list(contraintes.values())[i][0] for i in range(len(list(choix.values())))]
+
+    categ = df[df.iloc[:,1]==list(choix.values())[0]].iloc[0,0]
+    total = 0
+    all_vals = []
+    
+    for key, elt in contraintes.items():
+        categ = df[df.iloc[:,1]==key].iloc[0,0]
+        all_vals.append((categ, key, elt[0]))
+        
+    vals = [i for i in all_vals if i[0]=="alimentation"]
+    vals.extend([i for i in all_vals if i[0]=="ésthétique" or i[0]=="habillement"])
+    vals.extend([i for i in all_vals if i[0]=="média"])
+    vals.extend([i for i in all_vals if i[0]=="salle et déco"])
+    vals.extend([i for i in all_vals if i[0]=="accessoire"])
+    vals.extend([i for i in all_vals if i[0]=="plus"])
+    vals.extend([i for i in all_vals if i[0]=="cultures"])
+    vals.extend([i for i in all_vals if i[0]=="voyage lune de miel"])
+    
+    repartitions = {}
+    i = 0
+    while sum(repartitions.values())+vals[i][2]<budget:
+        repartitions[vals[i][1]] = vals[i][2]
+        i += 1
+
+    
+    return repartitions
+
+def pulp_optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> dict:
+    if(budget < float(df.iloc[-1,2])):
+        return optimize_min(df, budget, choice, invites)
+    else :
+        return optimize(df, budget, choice, invites)
