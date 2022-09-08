@@ -139,7 +139,7 @@ def optimize_min(df:pd.DataFrame, budget: int, choice: list, invites: int) -> di
             
         i += 1
 
-    
+    repartitions["Autres"] = budget - sum(repartitions.values())
     return repartitions
 
 def pulp_optimize(df:pd.DataFrame, budget: int, choice: list, invites: int) -> dict:
